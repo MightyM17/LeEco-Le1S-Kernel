@@ -329,6 +329,7 @@ static int brk_handler(unsigned long addr, unsigned int esr,
 	return 0;
 }
 
+#ifdef CONFIG_COMPAT
 int aarch32_break_handler(struct pt_regs *regs)
 {
 	siginfo_t info;
@@ -368,6 +369,7 @@ int aarch32_break_handler(struct pt_regs *regs)
 	force_sig_info(SIGTRAP, &info, current);
 	return 0;
 }
+#endif
 
 static int __init debug_traps_init(void)
 {
